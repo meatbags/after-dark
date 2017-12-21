@@ -1,0 +1,33 @@
+{
+  "name": "after-dark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "webpack": "webpack",
+    "watch": "webpack --watch",
+    "sass": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meatbags/after-dark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meatbags/after-dark/issues"
+  },
+  "homepage": "https://github.com/meatbags/after-dark#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-sass": "^3.1.0",
+    "webpack": "^3.10.0",
+    "webpack-preset": "^0.2.0",
+    "webpack-preset-babel": "^0.2.0"
+  }
+}
