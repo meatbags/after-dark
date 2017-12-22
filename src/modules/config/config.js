@@ -1,6 +1,8 @@
 const Config = {
   file: {
     assetPath: 'assets/',
+    objectPath: 'assets/objects/',
+    roomPath: 'assets/rooms/'
   },
   camera: {
     position: {

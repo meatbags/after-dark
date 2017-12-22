@@ -5,11 +5,13 @@ class Room {
   constructor(id, map, collisionMap) {
     this.id = id;
     this.objects = [];
+
+    // load maps
     if (map) {
-      this.loadMap(Config.file.assetPath + map);
+      this.loadMap(Config.file.roomPath + map);
     }
     if (collisionMap) {
-      this.loadCollisionMap(Config.file.assetPath + collisionMap);
+      this.loadCollisionMap(Config.file.roomPath + collisionMap);
     }
   }
 
@@ -50,6 +52,11 @@ class Room {
     // add object
 
     this.objects.push(object);
+
+    // add mesh/es
+    if (object.group) {
+      this.group.add(object.group);
+    }
   }
 
   update(delta) {

@@ -1,5 +1,3 @@
-import './lib/FBXLoader.js';
-
 const FBXLoader = new THREE.FBXLoader();
 const LoadFBX = (path, material) => {
   // load fbx file

@@ -1,5 +1,6 @@
 import { Player, Camera } from '../player';
 import Room from './room';
+import { CeilingFan } from '../objects';
 
 class Scene {
   constructor() {
@@ -10,7 +11,9 @@ class Scene {
     // load stuff
     this.loading = true;
     this.room = new Room(this._uid('Room'), 'test_room.fbx', false);
+    this.room.add(new CeilingFan);
     this.scene.add(this.room.group);
+    this.currentRoom = this.room;
 
     // dev test
     const ball = new THREE.Mesh(
@@ -36,7 +39,10 @@ class Scene {
   }
 
   update(delta) {
+    // logic
+
     this.player.update(delta);
+    this.currentRoom.update(delta);
   }
 
   getScene() {
