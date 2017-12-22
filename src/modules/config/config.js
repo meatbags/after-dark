@@ -6,7 +6,7 @@ const Config = {
   },
   camera: {
     position: {
-      x: 20,
+      x: 15,
       y: 20,
       z: 20
     },

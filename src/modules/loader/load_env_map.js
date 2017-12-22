@@ -1,13 +1,13 @@
-const LoadEnvMap = (root) => {
+const LoadEnvMap = (path) => {
   // load environment map
 
   const envMap = new THREE.CubeTextureLoader().load([
-    `${root}/posx.jpg`,
-    `${root}/negx.jpg`,
-    `${root}/posy.jpg`,
-    `${root}/negy.jpg`,
-    `${root}/posz.jpg`,
-    `${root}/negz.jpg`
+    `${path}/posx.jpg`,
+    `${path}/negx.jpg`,
+    `${path}/posy.jpg`,
+    `${path}/negy.jpg`,
+    `${path}/posz.jpg`,
+    `${path}/negz.jpg`
   ]);
 
   return envMap;
