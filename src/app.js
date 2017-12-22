@@ -2,10 +2,13 @@
  ** @author meatbags / https://github.com/meatbags
  **/
 
+import Master from './modules/master';
+
 const App = {
   init: () => {
-    console.log('hello app.');
+    const master = new Master();
+    master.loop();
   }
 }
 
-window.onload = () => { app.init(); };
+window.onload = () => { App.init(); };
