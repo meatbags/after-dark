@@ -6,22 +6,28 @@ const Config = {
   },
   camera: {
     position: {
-      x: 15,
+      x: 20,
       y: 20,
       z: 20
     },
-    inverseScale: 150,
+    size: 8,
     near: 1,
     far: 1000,
+    adjustFactor: 0.05
   },
   renderer: {
     width: 1200,
     height: 600,
     bloom: {
-      strength: 1.0,
-      radius: 1.0,
-      threshold: 0.7
+      strength: 0.5,
+      radius: 0.5,
+      threshold: 0.8
     }
+  },
+  player: {
+    height: 2,
+    speed: 3,
+    adjustFactor: 0.2
   }
 };
 

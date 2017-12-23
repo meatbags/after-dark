@@ -8,20 +8,15 @@ class Scene {
     this.camera = new Camera();
     this.player = new Player();
 
+    // add player
+    this.scene.add(this.player.group);
+
     // load stuff
     this.loading = true;
     this.room = new Room(this._uid('Room'), 'test_room.fbx', false);
     this.room.add(new CeilingFan);
     this.scene.add(this.room.group);
     this.currentRoom = this.room;
-
-    // dev test
-    const ball = new THREE.Mesh(
-      new THREE.SphereBufferGeometry(0.125, 12, 12),
-      new THREE.MeshPhongMaterial({emissive: 0xffffff})
-    );
-    ball.position.y = 2;
-    this.scene.add(ball);
 
     this.light = {
       p1: new THREE.PointLight(0xffffff, 1, 100, 2),
@@ -42,6 +37,7 @@ class Scene {
     // logic
 
     this.player.update(delta);
+    this.camera.update(this.player.position);
     this.currentRoom.update(delta);
   }
 
