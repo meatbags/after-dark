@@ -1,11 +1,12 @@
 import { Config } from '../config';
+import { OrthoToScreen } from '../maths';
 
 class Text {
   constructor(text, position) {
     this.targetText = text;
     this.text = text;
-    this.position3D = position;
-    this.position2D = new THREE.Vector2(100, 100);
+    this.position = position;
+    this.screen = new THREE.Vector3();
     this.context = document.getElementById(Config.renderer.ui.elementID).getContext('2d');
   }
 
@@ -13,6 +14,7 @@ class Text {
     // set new target text
 
     this.targetText = text;
+    this.text = text;
   }
 
   animateIn() {
@@ -24,15 +26,16 @@ class Text {
   }
 
   update(delta, camera) {
+    // get screen coordinates
 
-
+    OrthoToScreen(this.position, camera, this.screen);
     this.draw();
   }
 
   draw() {
     // draw text
 
-    this.context.fillText(this.text, this.position2D.x, this.position2D.y);
+    this.context.fillText(this.text, this.screen.x, this.screen.y);
   }
 }
 

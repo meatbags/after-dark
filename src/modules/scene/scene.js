@@ -20,11 +20,11 @@ class Scene {
     // test room
     this.room = new Room(this._uid('Room'), 'test_room.fbx', false);
 
-    const trigger = new Trigger(new THREE.Vector3(0, 0, 0), 1);
-    trigger.setOnEnter(() => {});
-    trigger.setOnExit(() => {});
-    trigger.setOnInteract(() => {});
-    trigger.setTimeout(5);
+    const trigger = new Trigger(new THREE.Vector3(3, 0, 0), 1);
+    trigger.setOnEnter(() => { trigger.text.setText('Enter.'); });
+    trigger.setOnExit(() => { trigger.text.setText('Exit.'); });
+    trigger.setOnInteract(() => { trigger.text.setText('Interact.'); });
+    trigger.setTimeout(1);
 
     this.room.add(new CeilingFan(), trigger);
 
@@ -51,8 +51,8 @@ class Scene {
     // logic
 
     this.player.update(delta);
-    this.camera.update(this.player.position);
-    this.currentRoom.update(delta, this.player.position, this.camera.position);
+    this.camera.update(this.player);
+    this.currentRoom.update(delta, this.player, this.camera);
   }
 
   getScene() {

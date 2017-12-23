@@ -10,11 +10,18 @@ class CeilingFan {
       meshes.forEach((mesh) => { this.group.add(mesh); });
     }, (err) => { throw(err); });
 
-    this.group.position.set(0, 2.5, 2.5);
+    // set position
+    this.group.position.set(1.5, 2.5, 0);
+    this.group.scale.set(1, 1, 1);
+
+    // props
+    this.rotationSpeed = Math.PI / 24;
   }
 
   update(delta) {
-    this.group.rotation.y += delta * Math.PI * 0.125;
+    // revolve fan
+
+    this.group.rotation.y += delta * this.rotationSpeed;
   }
 }
 

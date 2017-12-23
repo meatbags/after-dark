@@ -21,7 +21,7 @@ class Trigger {
 
     // mesh
     this.group = new THREE.Group();
-    this.text = new Text('e) do something', this.position);
+    this.text = new Text('e)', this.position);
     this.group.position.set(position.x, position.y, position.z);
   }
 
@@ -42,7 +42,7 @@ class Trigger {
   update(delta, player, camera) {
     // trigger events and set state
 
-    if (this.position.distanceTo(player) <= this.radius) {
+    if (this.position.distanceTo(player.position) <= this.radius) {
       if (!this.active) {
         this.active = true;
 

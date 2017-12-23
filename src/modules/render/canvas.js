@@ -22,16 +22,24 @@ class Canvas {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  setIndex(index) {
-    // set css z index
+  setStyle(style) {
+    // set css
 
-    this.canvas.style.zIndex = index;
+    for (let prop in style) {
+      if (style.hasOwnProperty(prop)) {
+        this.canvas.style[prop] = style[prop];
+      }
+    }
   }
 
-  setFont(font) {
-    // set font
+  setContext(props) {
+    // set canvas props
 
-    this.context.font = font;
+    for (let prop in props) {
+      if (props.hasOwnProperty(prop)) {
+        this.context[prop] = props[prop];
+      }
+    }
   }
 
   resize(width, height) {

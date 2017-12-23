@@ -5,7 +5,7 @@ const Config = {
       y: 20,
       z: 20
     },
-    size: 8,
+    size: 4,
     near: 1,
     far: 1000,
     adjustFactor: 0.05

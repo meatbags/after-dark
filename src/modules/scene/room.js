@@ -15,6 +15,14 @@ class Room {
     }
   }
 
+  update(delta, player, camera) {
+    // update objects
+
+    for (let i=0; i<this.objects.length; i++) {
+      this.objects[i].update(delta, player, camera);
+    }
+  }
+
   loadMap(path) {
     // load map meshes
 
@@ -68,14 +76,6 @@ class Room {
       if (this.objects[i].interactive) {
         this.objects[i].interact();
       }
-    }
-  }
-
-  update(delta, player, camera) {
-    // update objects
-
-    for (let i=0; i<this.objects.length; i++) {
-      this.objects[i].update(delta, player, camera);
     }
   }
 }

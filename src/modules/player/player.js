@@ -20,19 +20,24 @@ class Player {
     this.keys = this.keyboard.keys;
     this.onEvent = onEvent;
 
+    // model
     this.group = new THREE.Group();
     this.group.add(new THREE.Mesh(
-      new THREE.SphereBufferGeometry(0.25, 16, 16),
-      new THREE.MeshPhongMaterial({emissive: 0xffffff})
+      new THREE.BoxBufferGeometry(0.5, 0.1, 0.5),
+      new THREE.ShaderMaterial(THREE.DepthShader)
+      //new THREE.MeshPhongMaterial({color: 0xff0000})
     ));
 
     //this.interaction = new Collider.Interaction(this.target.position, this.target.rotation, this.target.motion);
   }
 
   update(delta) {
-    this.motion.x = ((this.keys.a) ? -this.config.speed : 0) + ((this.keys.d) ? this.config.speed : 0);
-    this.motion.z = ((this.keys.w) ? -this.config.speed : 0) + ((this.keys.s) ? this.config.speed : 0);
-    this.motion.multiplyScalar(delta);
+    this.motion.x = ((this.keys.a) ? -1 : 0) + ((this.keys.d) ? 1 : 0);
+    this.motion.z = ((this.keys.w) ? -1 : 0) + ((this.keys.s) ? 1 : 0);
+    if (this.motion.x != 0 && this.motion.z != 0) {
+      this.motion.normalize();
+    }
+    this.motion.multiplyScalar(this.config.speed * delta);
     this.target.position.add(this.motion);
     this.position.x += (this.target.position.x - this.position.x) * this.config.adjustFactor;
     this.position.z += (this.target.position.z - this.position.z) * this.config.adjustFactor;

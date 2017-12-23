@@ -8,7 +8,7 @@ class Renderer {
 
     // set up
     this.config = Config.renderer;
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({antialias: true});
     this.renderer.setSize(this.config.width, this.config.height);
     this.renderer.setClearColor(0x0, 1);
 
@@ -38,8 +38,8 @@ class Renderer {
 
     // create UI canvas
     this.ui = new Canvas(Config.renderer.ui.elementID, this.config.width, this.config.height, document.body);
-    this.ui.setIndex(Config.renderer.ui.zIndex);
-    this.ui.setFont(Config.renderer.ui.font);
+    this.ui.setStyle({zIndex: Config.renderer.ui.zIndex});
+    this.ui.setContext({font: Config.renderer.ui.font});
   }
 
   clearUI() {
@@ -49,6 +49,7 @@ class Renderer {
   }
 
   render(delta) {
+    //this.renderer.render(this.scene, this.camera);
     this.composer.render(delta);
   }
 }
