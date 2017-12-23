@@ -1,20 +1,34 @@
 import { Player, Camera } from '../player';
 import Room from './room';
 import { CeilingFan } from '../objects';
+import Trigger from './trigger';
 
 class Scene {
   constructor() {
     this.scene = new THREE.Scene();
     this.camera = new Camera();
-    this.player = new Player();
+  }
 
+  init() {
     // add player
+    this.player = new Player(() => { this.currentRoom.interact(); });
     this.scene.add(this.player.group);
 
     // load stuff
     this.loading = true;
+
+    // test room
     this.room = new Room(this._uid('Room'), 'test_room.fbx', false);
-    this.room.add(new CeilingFan);
+
+    const trigger = new Trigger(new THREE.Vector3(0, 0, 0), 1);
+    trigger.setOnEnter(() => {});
+    trigger.setOnExit(() => {});
+    trigger.setOnInteract(() => {});
+    trigger.setTimeout(5);
+
+    this.room.add(new CeilingFan(), trigger);
+
+    // set room
     this.scene.add(this.room.group);
     this.currentRoom = this.room;
 
@@ -38,7 +52,7 @@ class Scene {
 
     this.player.update(delta);
     this.camera.update(this.player.position);
-    this.currentRoom.update(delta);
+    this.currentRoom.update(delta, this.player.position, this.camera.position);
   }
 
   getScene() {

@@ -1,4 +1,5 @@
 import { Config } from '../config';
+import Canvas from './canvas';
 
 class Renderer {
   constructor(scene, camera) {
@@ -34,6 +35,17 @@ class Renderer {
 
     // add to document
     document.body.appendChild(this.renderer.domElement);
+
+    // create UI canvas
+    this.ui = new Canvas(Config.renderer.ui.elementID, this.config.width, this.config.height, document.body);
+    this.ui.setIndex(Config.renderer.ui.zIndex);
+    this.ui.setFont(Config.renderer.ui.font);
+  }
+
+  clearUI() {
+    // clear UI canvas
+
+    this.ui.clear();
   }
 
   render(delta) {

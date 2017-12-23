@@ -48,22 +48,34 @@ class Room {
     return (this.toLoad == 0);
   }
 
-  add(object) {
-    // add object
+  add() {
+    // add objects
 
-    this.objects.push(object);
+    for (let i=0; i<arguments.length; i++) {
+      this.objects.push(arguments[i]);
 
-    // add mesh/es
-    if (object.group) {
-      this.group.add(object.group);
+      // add mesh
+      if (arguments[i].group) {
+        this.group.add(arguments[i].group);
+      }
     }
   }
 
-  update(delta) {
+  interact() {
+    // interact with room objects
+
+    for (let i=0; i<this.objects.length; i++) {
+      if (this.objects[i].interactive) {
+        this.objects[i].interact();
+      }
+    }
+  }
+
+  update(delta, player, camera) {
     // update objects
 
     for (let i=0; i<this.objects.length; i++) {
-      this.objects[i].update(delta);
+      this.objects[i].update(delta, player, camera);
     }
   }
 }

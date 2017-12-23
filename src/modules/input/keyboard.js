@@ -7,6 +7,12 @@ class Keyboard {
     document.addEventListener('keyup', (key) => { this.onKeyUp(key); });
   }
 
+  forceUp(key) {
+    // set key to false
+    
+    this.keys[key] = false;
+  }
+
   onKeyDown(key) {
     // record relevant key presses
 

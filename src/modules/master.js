@@ -6,6 +6,9 @@ class Master {
     this.scene = new Scene();
     this.renderer = new Renderer(this.scene.getScene(), this.scene.getCamera());
 
+    // init
+    this.scene.init();
+
     // run
     this.fps = 1000 / 30;
     this.paused = false;
@@ -26,6 +29,7 @@ class Master {
       this.age += delta;
 
       // update
+      this.renderer.clearUI();
       this.scene.update(delta);
       this.renderer.render(delta);
     }

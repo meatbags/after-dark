@@ -2,7 +2,7 @@ import { Keyboard } from '../input';
 import { Config } from '../config';
 
 class Player {
-  constructor() {
+  constructor(onEvent) {
     // player
 
     this.config = Config.player;
@@ -14,8 +14,12 @@ class Player {
       rotation: new THREE.Vector3(0, 0, 0),
       motion: new THREE.Vector3(0, 0, 0)
     };
+
+    // events, interaction
     this.keyboard = new Keyboard();
     this.keys = this.keyboard.keys;
+    this.onEvent = onEvent;
+
     this.group = new THREE.Group();
     this.group.add(new THREE.Mesh(
       new THREE.SphereBufferGeometry(0.25, 16, 16),
@@ -33,6 +37,12 @@ class Player {
     this.position.x += (this.target.position.x - this.position.x) * this.config.adjustFactor;
     this.position.z += (this.target.position.z - this.position.z) * this.config.adjustFactor;
     this.group.position.set(this.position.x, this.position.y, this.position.z);
+
+    // interaction
+    if (this.keys.e) {
+      this.keyboard.forceUp('e');
+      this.onEvent();
+    }
   }
 }
 
