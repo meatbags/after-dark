@@ -11,11 +11,11 @@ class CeilingFan {
     }, (err) => { throw(err); });
 
     // set position
-    this.group.position.set(1.5, 2.5, 0);
+    this.group.position.set(0, 2, 0);
     this.group.scale.set(1, 1, 1);
 
     // props
-    this.rotationSpeed = Math.PI / 24;
+    this.rotationSpeed = Math.PI / 4;
   }
 
   update(delta) {

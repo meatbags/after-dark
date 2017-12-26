@@ -23,9 +23,8 @@ class Player {
     // model
     this.group = new THREE.Group();
     this.group.add(new THREE.Mesh(
-      new THREE.BoxBufferGeometry(0.5, 0.1, 0.5),
+      new THREE.BoxBufferGeometry(0.5, 0.5, 0.5),
       new THREE.ShaderMaterial(THREE.DepthShader)
-      //new THREE.MeshPhongMaterial({color: 0xff0000})
     ));
 
     //this.interaction = new Collider.Interaction(this.target.position, this.target.rotation, this.target.motion);
@@ -48,6 +47,14 @@ class Player {
       this.keyboard.forceUp('e');
       this.onEvent();
     }
+  }
+
+  setPosition(position) {
+    // set position
+
+    this.position.set(position.x, position.y, position.z);
+    this.target.position.set(position.x, position.y, position.z);
+    this.group.position.set(position.x, position.y, position.z);
   }
 }
 

@@ -24,7 +24,10 @@ const LoadFBX = (path, material) => {
           // material settings
           if (material) {
             for (let i=0; i<meshes.length; i++) {
-              meshes[i].material = material;
+              // replace default material
+              if (meshes[i].material.type == 'MeshLambertMaterial') {
+                meshes[i].material = material;
+              }
             }
           } else {
             // set defaults

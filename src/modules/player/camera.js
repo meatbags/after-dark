@@ -45,7 +45,7 @@ class Camera {
   }
 
   update(player) {
-    // set new position
+    // move
 
     this.position.x += (player.position.x - this.position.x) * this.config.adjustFactor;
     this.position.y += (player.position.y - this.position.y) * this.config.adjustFactor;
@@ -55,6 +55,12 @@ class Camera {
       this.position.y + this.config.position.y,
       this.position.z + this.config.position.z
     );
+  }
+
+  setPosition(position) {
+    // set position
+
+    this.position.set(position.x, position.y, position.z);
   }
 }
 

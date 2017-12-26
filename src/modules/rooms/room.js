@@ -1,16 +1,23 @@
 import { LoadFBX } from '../loader';
 import { Config } from '../config';
+import { TYPE_ENTRANCE } from './entrance';
 
 class Room {
-  constructor(id, map, collisionMap) {
+  constructor(id, map, collision, onLeaveRoom) {
     this.id = id;
+    this.onLeaveRoom = onLeaveRoom;
+    this.group = new THREE.Group();
+
+    // objects
     this.objects = [];
 
-    // load maps
+    // load map
     if (map) {
       this.loadMap(Config.file.roomPath + map);
     }
-    if (collisionMap) {
+
+    // load collision map
+    if (collision) {
       this.loadCollisionMap(Config.file.roomPath + collisionMap);
     }
   }
@@ -27,9 +34,7 @@ class Room {
     // load map meshes
 
     this.toLoad = (this.toLoad) ? this.toLoad + 1 : 1;
-    this.group = new THREE.Group();
-    const mat = new THREE.ShaderMaterial(THREE.DepthShader);
-    LoadFBX(path, mat).then((meshes) => {
+    LoadFBX(path, new THREE.ShaderMaterial(THREE.DepthShader)).then((meshes) => {
       this.toLoad -= 1;
       meshes.forEach((mesh) => {
         this.group.add(mesh)
@@ -77,6 +82,18 @@ class Room {
         this.objects[i].interact();
       }
     }
+  }
+
+  getObjectById(id) {
+    // get object
+
+    for (let i=0; i<this.objects.length; i++) {
+      if (this.objects[i].id && this.objects[i].id == id) {
+        return this.objects[i];
+      }
+    }
+
+    return null;
   }
 }
 

@@ -21,7 +21,6 @@ class Trigger {
 
     // mesh
     this.group = new THREE.Group();
-    this.text = new Text('e)', this.position);
     this.group.position.set(position.x, position.y, position.z);
   }
 
@@ -33,9 +32,7 @@ class Trigger {
       this.onInteract();
 
       // set timer
-      if (this.timeout.active) {
-        this.timeout.time = this.timeout.maxTime;
-      }
+      this.triggerTimeout();
     }
   }
 
@@ -68,9 +65,6 @@ class Trigger {
         this.triggered = false;
       }
     }
-
-    // draw text
-    this.text.update(delta, camera);
   }
 
   setTimeout(time) {
@@ -78,6 +72,15 @@ class Trigger {
 
     this.timeout.active = true;
     this.timeout.maxTime = time;
+  }
+
+  triggerTimeout() {
+    // trigger timeout start
+
+    if (this.timeout.active) {
+      this.triggered = true;
+      this.timeout.time = this.timeout.maxTime;
+    }
   }
 
   setOnEnter(event) {
