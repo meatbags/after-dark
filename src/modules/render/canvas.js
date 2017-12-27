@@ -13,7 +13,7 @@ class Canvas {
     this.DOMTarget.appendChild(this.canvas);
 
     // default style
-    this.context.fillStyle = this.context.strokeStyle = '#fff';
+    this.context.fillStyle = this.context.strokeStyle = '#edcaff';
   }
 
   clear() {

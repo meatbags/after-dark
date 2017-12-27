@@ -36,13 +36,13 @@ class Door {
     }
 
     // text prompt
-    this.text = new Text('', extend, {x:-12});
+    this.text = new Text('', extend, {x:-12, y:-65});
 
     // logic
     this.trigger.setOnEnter(() => {
       if (this.ajar && !this.open) {
         this.target = this.angleAjar;
-        this.text.setText('e = open');
+        this.text.setText('e. open');
       }
     });
     this.trigger.setOnExit(() => {
